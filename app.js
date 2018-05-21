@@ -8,16 +8,41 @@ const connection = new Sequelize('demo_schema', 'root', 'root', {
 })
 
 const Article = connection.define('article', {
-  title: Sequelize.STRING,
-  content: Sequelize.TEXT
-})
+  slug: {
+    type: Sequelize.STRING,
+    primaryKey: true
+  },
+  title: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [10, 150],
+        msg: '字符串个数为10到150'
+      }
+    }
+  },
+  body: {
+    type: Sequelize.TEXT
+  }
+}, {
+    timestamps: false
+  })
 
 // sync 做两件事情
 // 第一、连接数据库
 // 第二、创建一个对应数据库
-connection.sync().then(() => {
-  Article.create({
-    title: 'demo title',
-    content: 'Lorem ipsum dolor'
+connection.sync(
+  {
+    force: true,
+    logging: console.log
+  }
+)
+  .then(() => {
+    Article.create({
+      slug: 'wqe1q',
+      title: 'demaffewrwerwraffaf',
+      body: 'Lorem ipsum dolor'
+    })
   })
-})
