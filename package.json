@@ -1,0 +1,12 @@
+{
+  "name": "sequelize-abc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/solocao/sequelize-abc.git",
+  "author": "caowei <solocao@126.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.8"
+  }
+}
